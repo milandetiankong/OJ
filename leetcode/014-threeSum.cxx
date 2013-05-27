@@ -10,31 +10,27 @@ public:
         
         sort(num.begin(), num.end());
         
-        int sum0, sum1, sum2;
-        for (int i=0; i<n; ++i) {
-            if (i && num[i] == num[i-1]) continue;
-            
-            sum0  = num[i];
-            if (sum0>0) break;
-            
-            for (int j=i+1; j<n; ++j) {
-                if (j != i+1 && num[j] == num[j-1]) continue;
-                
-                sum1 = sum0 + num[j];
-                if (sum1>0) break;
-                
-                for (int k=j+1; k<n; ++k) {
-                    if (k != j+1 && num[k] == num[k-1]) continue;
-                    
-                    sum2 = sum1 + num[k];
-                    if (sum2 == 0) {
-                        cur[0] = num[i];
-                        cur[1] = num[j];
-                        cur[2] = num[k];
-                        as.push_back(cur);
-                    }
-                    
-                    if (sum2 > 0) break;
+        int need, j, k;
+        for (int i=0; i<n-2; ++i) {
+            need = -num[i];
+            if (i>0 && num[i]==num[i-1]) continue;
+            j = i+1;
+            k = n-1;
+            while (j < k) {
+                if (num[j]+num[k] == need) {
+                    // add
+                    cur[0] = num[i];
+                    cur[1] = num[j];
+                    cur[2] = num[k];
+                    as.push_back(cur);
+                    ++j;
+                    --k;
+                    while (num[j] == num[j-1]) ++j;
+                    while (num[k] == num[k+1]) --k;
+                } else if (num[j]+num[k] < need) {
+                    ++j; 
+                } else {
+                    --k;
                 }
             }
         }
