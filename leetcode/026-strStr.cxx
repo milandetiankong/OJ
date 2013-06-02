@@ -14,6 +14,7 @@ public:
                 ++y;
             }
             if (*y==0) return p;
+            if (*x==0) return 0;
             ++p;
         }
         return 0;
