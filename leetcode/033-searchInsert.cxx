@@ -6,9 +6,8 @@ public:
         int x=0, y=n-1, mid;
         while (x < y) {
             mid = (x+y) / 2;
-            if (A[mid] == target) return mid;
-            else if (A[mid] < target) x = mid+1;
-            else  y = mid;
+            if (target <= A[mid]) y = mid;
+            else x = mid+1;
         }
         if (target <= A[x]) return x;
         return x+1;
