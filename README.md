@@ -1,4 +1,4 @@
-poj
+OJ
 ===
 
 code backup for some online judge problems.
