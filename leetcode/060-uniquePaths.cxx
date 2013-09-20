@@ -17,3 +17,20 @@ public:
         return ret;
     }
 };
+
+class Solution {
+public:
+    int uniquePaths(int m, int n) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        if (m == 0 || n == 0) return 0;
+        if (m == 1) return 1;
+        vector<int> dp(m, 1);
+        for (int i = 1; i < n; ++i) {
+            for (int j = 1; j < m; ++j) {
+                dp[j] += dp[j-1];
+            }
+        }
+        return dp[m-1];
+    }
+};
