@@ -26,6 +26,8 @@ public:
     vector<vector<int> > pathSum(TreeNode *root, int sum) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
+        ret.clear();
+        item.clear();
         if (! root) return ret;
         t = sum;
         dfs(root, 0);
