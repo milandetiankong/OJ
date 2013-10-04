@@ -12,24 +12,19 @@ using namespace std;
 
 class Solution {
 public:
-    int canCompleteCircuit(vector<int> &gas, vector<int> &cost) {
+    int singleNumber(int A[], int n) {
         // Note: The Solution object is instantiated only once and is reused by each test case.
-        int i = 0, j = 0, sum= 0; 
-        int n = gas.size();
-        while (i < n) {
-            sum += gas[j];
-            sum -= cost[j];
-            ++j;
-            if (j == n)  j = 0;
-
-            if (sum < 0) {
-                sum = 0;
-                if (j <= i) return -1;
-                i = j;
-            }
-            if (j == i) return i;
+        if (n < 1) return 0;
+        int ret = A[0];
+        for (int i = 1; i < n; ++i) {
+            ret ^= A[i];
         }
-        return -1;
+        return ret;
     }
 };
-
+int main(void) {
+    int A[] = {1, 2, 3, 4, 3, 2, 1};
+    Solution sl;
+    cout << sl.singleNumber(A, 7) << endl;
+    return 0;
+}
