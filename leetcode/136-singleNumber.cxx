@@ -1,14 +1,3 @@
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <queue>
-#include <stack>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-
-using namespace std;
 class Solution {
 public:
     int singleNumber(int A[], int n) {
@@ -25,10 +14,3 @@ public:
         return ret;
     }
 };
-
-int main(void) {
-    int A[] = {1, 2, 3, -4, 3, 2, 1, 3, 2, 1};
-    Solution sl;
-    cout << sl.singleNumber(A, 10) << endl;
-    return 0;
-}
