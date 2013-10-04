@@ -1,3 +1,4 @@
+#include <stdio.h>
 #include <iostream>
 #include <string>
 #include <vector>
@@ -9,26 +10,27 @@
 #include <algorithm>
 
 using namespace std;
-class Solution {
-public:
-    int singleNumber(int A[], int n) {
-        // Note: The Solution object is instantiated only once and is reused by each test case.
-        int mod = 1, ret = 0, ct;
-        for (int i = 0; i < sizeof(A[0])*8; ++i) {
-            ct = 0;
-            for (int j = 0; j < n; ++j) {
-                if (A[j] & mod) ++ct;
-            }
-            if (ct % 3) ret |= mod;
-            mod <<= 1;
-        }
-        return ret;
-    }
-};
+
+//#include "*.cxx"
+
+#define PRINT(x) printf(#x ": %x\n", x)
 
 int main(void) {
-    int A[] = {1, 2, 3, -4, 3, 2, 1, 3, 2, 1};
-    Solution sl;
-    cout << sl.singleNumber(A, 10) << endl;
+    int len = sizeof(int);
+    PRINT(len);
+    int x = 0x80000001;
+    cout << x << endl;
+
+    PRINT(1 << 31);
+    PRINT(0x80000001 << 1);
+    PRINT(x << 1);
+
+    PRINT(0x80000001 >> 1);
+    PRINT(x =  x >> 1);
+    PRINT(x =  x >> 1);
+    PRINT(x =  x >> 1);
+
+    x = -1;
+    cout << (x << 1) << endl;
     return 0;
 }
