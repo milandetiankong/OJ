@@ -1,6 +1,27 @@
 class Solution {
 public:
     void nextPermutation(vector<int> &num) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.        
+        int n = num.size();
+        int  j = n-1;
+        while (--j >= 0) {
+            if (num[j] < num[j+1]) break;
+        }
+        if (j < 0) {
+            reverse(num.begin(), num.end());
+            return ;
+        }
+        int i = n;
+        while (--i > j) {
+            if (num[i] > num[j]) break;
+        }
+        swap(num[i], num[j]);
+        reverse(num.begin()+j+1, num.end());
+    }
+};
+class Solution {
+public:
+    void nextPermutation(vector<int> &num) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
         int n =  num.size();
