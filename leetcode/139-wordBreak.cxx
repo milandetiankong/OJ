@@ -1,20 +1,3 @@
-#include <stdio.h>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <queue>
-#include <stack>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-
-using namespace std;
-
-//#include "*.cxx"
-
-#define PRINT(x) printf(#x ": %x\n", x)
-
 class Solution {
     string ss;
     unordered_set<string> dd;
@@ -42,7 +25,7 @@ class Solution {
         }
     }
 public:
-    vector<string> x(string s, unordered_set<string> &dict) {
+    vector<string> wordBreak(string s, unordered_set<string> &dict) {
         // Note: The Solution object is instantiated only once and is reused by each test case.
         ss = s;
         dd =dict; 
@@ -65,31 +48,3 @@ public:
         return ret;
     }
 };
-int main(void) {
-    int len = sizeof(int);
-    PRINT(len);
-    int x = 0x80000001;
-    cout << x << endl;
-
-    PRINT(1 << 31);
-    PRINT(0x80000001 << 1);
-    PRINT(x << 1);
-
-    PRINT(0x80000001 >> 1);
-    PRINT(x =  x >> 1);
-    PRINT(x =  x >> 1);
-    PRINT(x =  x >> 1);
-
-    x = -1;
-    cout << (x << 1) << endl;
-
-    Solution sl;
-    string s = "catsanddog";
-    string x_[] = {"cat", "cats", "and", "sand", "dog"};
-    unordered_set<string>  d(x_, x_+5);
-    vector<string> r = sl.x(s, d);
-    for (int i = 0; i < r.size(); ++i) {
-        cout << r[i] << endl;
-    }
-    return 0;
-}
