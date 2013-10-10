@@ -7,28 +7,24 @@
  *     Interval(int s, int e) : start(s), end(e) {}
  * };
  */
- bool _cmp(const Interval & a, const Interval &b) {
-     if (a.start == b.start) return a.end < b.end;
-     return a.start < b.start;
- }
+bool cmp(const Interval &a, const Interval &b) {
+    if (a.start == b.start) return a.end < b.end;
+    return a.start < b.start;
+}
 class Solution {
 public:
-    vector<Interval> merge(vector<Interval> &intervals) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        sort(intervals.begin(), intervals.end(), _cmp);
-
-        Interval tmp;
+    vector<Interval> merge(vector<Interval> &is) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
         vector<Interval> ret;
-        if (intervals.size() == 0) return ret;
-        tmp = intervals[0];
-        
-        for (int i = 1; i < intervals.size(); ++i) {
-            if (intervals[i].start <= tmp.end) {
-                if (tmp.end < intervals[i].end) tmp.end = intervals[i].end;
-            } else {
+        if (is.empty()) return ret;
+        sort(is.begin(), is.end(), cmp);
+        Interval tmp = is[0];
+        for (int i = 1; i < is.size(); ++i) {
+            if (is[i].start > tmp.end) {
                 ret.push_back(tmp);
-                tmp = intervals[i];
+                tmp = is[i];
+            } else if(is[i].end > tmp.end){
+                tmp.end = is[i].end;
             }
         }
         ret.push_back(tmp);
