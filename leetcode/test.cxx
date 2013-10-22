@@ -15,35 +15,38 @@ using namespace std;
 //#include "*.cxx"
 
 #define PRINT(x) printf(#x ": %x\n", x)
-class Solution {
-public:
-    int threeSumClosest(vector<int> &num, int target) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        int gap = INT_MAX;
-        int sum, tmp;
-        int n = num.size();
 
-        if (n < 3) return 0;
-        sort(num.begin(), num.end());
-        
-        for (int i=0; i<n-2; ++i) {
-            sum = target - num[i];
-            cout << "sum:" << sum << endl;
-            int l = i+1, r = n-1;
-            while(l < r) {
-                tmp = num[l] + num[r];
-                cout << "tmp:" << tmp << endl;
-                gap = min(gap, abs(sum-tmp));
-                cout << "gap:" << gap<< endl;
-                if (tmp < sum) ++l;
-                else if (tmp > sum) --r;
-                else break;
-            }
-        }
-        return gap;
-    }
+struct Node {
+    Node * left;
+    Node * right;
+    Node * parent;
 };
+
+Node *nextInorder(Node * p) {
+    if (p->right) {
+        Node * r = p->right;
+        while (r->left) r = r->left;
+        return r;
+    }
+    Node * f = p->parent;
+    while (f) {
+        if (f->left == p) return f;
+        p = f;
+        f = p->parent;
+    }
+    return 0;
+}
+
+Node *prePostorder(Node * p) {
+    if (p->left) return p->left;
+    if (p->right) return p->right;
+    Node * f = p->parent;
+    while (f) {
+        if (f->right == p && f->left) return f->left;
+        p = f;
+        f = p->parent;
+    }
+}
 
 int main(void) {
     vector<int> num = {0, 0 , 0 };
