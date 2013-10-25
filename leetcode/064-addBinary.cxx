@@ -1,28 +1,27 @@
 class Solution {
 public:
     string addBinary(string a, string b) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        string::reverse_iterator pa = a.rbegin();
-        string::reverse_iterator pb = b.rbegin();
-        char x, y, carry = 0;
-        string ret;
-        while (pa != a.rend() || pb != b.rend()) {
-            x = y = '0';
-            if (pa != a.rend()) x = *pa++;
-            if (pb != b.rend()) y = *pb++;
-            carry += x - '0' + y - '0';
-            ret.push_back('0' + carry%2);
-            if (carry > 1) carry = 1;
-            else carry = 0;
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        int la = a.size(), lb = b.size();
+        string ret(max(la, lb) + 1);
+        for (int ia=la-1, ib=lb-1, i=ret.size()-1; ia>=0 || ib>=0; --i) {
+            if (ia>=0) {
+                ret[i] += a[ia]-'0';
+                --ia;
+            }
+            if (ib>=0) {
+                ret[i] += b[ib]-'0';
+                --ib;
+            }
+            if (ret[i] > '1') {
+                ret[i-1] = '1';
+                ret[i] -= 2;
+            }
         }
-        if (carry) ret.push_back('0' + carry);
-        string::reverse_iterator pr = ret.rbegin();
-        while (pr != ret.rend()) {
-            if (*pr == '1') break;
-            ++pr;
+        if (ret[0]=='0') {
+            return string(ret.begin()+1, ret.end());
         }
-        if (pr == ret.rend()) return string("0");
-        return string(pr, ret.rend());
+        return ret;
     }
 };
+
