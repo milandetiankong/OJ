@@ -1,25 +1,11 @@
-#include <stdio.h>
-#include <iostream>
-#include <string>
-#include <vector>
-#include <map>
-#include <queue>
-#include <stack>
-#include <unordered_map>
-#include <unordered_set>
-#include <algorithm>
-
-using namespace std;
-
-//#include "*.cxx"
-
-#define PRINT(x) printf(#x ": %x\n", x)
-
-  struct RandomListNode {
-      int label;
-      RandomListNode *next, *random;
-      RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
-  };
+/**
+ * Definition for singly-linked list with a random pointer.
+ * struct RandomListNode {
+ *     int label;
+ *     RandomListNode *next, *random;
+ *     RandomListNode(int x) : label(x), next(NULL), random(NULL) {}
+ * };
+ */
 class Solution {
 public:
     RandomListNode *copyRandomList(RandomListNode *head) {
@@ -56,31 +42,3 @@ public:
         return ret;
     }
 };
-int main(void) {
-    int len = sizeof(int);
-    PRINT(len);
-    int x = 0x80000001;
-    cout << x << endl;
-
-    PRINT(1 << 31);
-    PRINT(0x80000001 << 1);
-    PRINT(x << 1);
-
-    PRINT(0x80000001 >> 1);
-    PRINT(x =  x >> 1);
-    PRINT(x =  x >> 1);
-    PRINT(x =  x >> 1);
-
-    x = -1;
-    cout << (x << 1) << endl;
-
-
-/*
-    Solution sl;
-    string s = "leetacode";
-    unordered_set<string> dict= {"leet", "code", "a"};
-    cout << sl.x(s, dict) << endl;
-    */
-
-    return 0;
-}
