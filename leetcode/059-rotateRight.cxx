@@ -9,29 +9,30 @@
 class Solution {
 public:
     ListNode *rotateRight(ListNode *head, int k) {
-        // Start typing your C/C++ solution below
-        // DO NOT write int main() function
-        ListNode * ret, *tmp, *p = head;
-        if (head == 0 || k == 0) return head;
-        int len = 0;
-        while (p) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        if (head == 0) return 0;
+        int len = 1;
+        ListNode * p = head;
+        while (p->next) {
             ++len;
             p = p->next;
         }
-        k %= len;
-        k = len - k;
-        p = head;
-        while (--k) {
-            p = p->next;
-        }
-        if (p->next == 0) return head;
-        ret = p->next;
-        p->next = 0;
-        p = ret;
-        while (p->next) {
-            p = p->next;
-        }
+        k = k % len;
+        if (k == 0) return head;
+
         p->next = head;
-        return ret;
+        k = len - k;
+
+        len = 0;
+        p = head;
+        while (p) {
+            ++len;
+            if (len == k) break;
+            p = p->next;
+        }
+        head = p->next;
+        p->next = 0;
+        return head;
     }
 };
+
