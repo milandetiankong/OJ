@@ -17,3 +17,24 @@ public:
         return j;
     }
 };
+
+class Solution {
+public:
+    int removeDuplicates(int A[], int n) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        int index = 0;
+        char flag = 0;
+        if (n == 0) return 0;
+        
+        for (int i = 1; i < n; ++i) {
+            if (A[index] != A[i]) {
+                A[++index] = A[i];
+                flag = 0;
+            } else if (flag == 0) {
+                A[++index] = A[i];
+                flag = 1;
+            }
+        }
+        return index + 1;
+    }
+};

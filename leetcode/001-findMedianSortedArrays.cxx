@@ -68,3 +68,29 @@ public:
         }
     }
 };
+
+class Solution {
+    int find_kth(int A[], int m, int B[], int n, int k) {
+        if ( m > n) return find_kth(B, n, A, m, k);
+        // m < n
+        if (m == 0) return B[k-1];
+        if (k == 1) return min(A[0], B[0]);
+        int pa = min(m, k/2), pb = k - pa;
+        if (A[pa-1] < B[pb-1])
+            return find_kth(A+pa, m-pa, B, n, k-pa);
+        else if (A[pa-1] > B[pb-1])
+            return find_kth(A, m, B+pb, n-pb, k-pb);
+        else
+            return A[pa-1];
+    }
+public:
+    double findMedianSortedArrays(int A[], int m, int B[], int n) {
+        // Note: The Solution object is instantiated only once and is reused by each test case.
+        int sum = m + n;
+        if (sum & 1) {
+            return find_kth(A, m, B, n, sum/2 + 1);
+        } else {
+            return (find_kth(A, m, B, n, sum/2) + find_kth(A, m, B, n, sum/2 + 1))/2.0;
+        }
+    }
+};

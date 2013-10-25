@@ -3,6 +3,12 @@ class Solution {
         unsigned long long ret = 0;
         return ret = x ^ (x>>1);
     }
+    unsigned long long decode(unsigned long long x) {
+        for (unsigned int mask = x>>1; mask != 0; mask = mask>>1) {
+            x = x ^ mask;
+        }
+        return x;
+    }
 public:
     vector<int> grayCode(int n) {
         // Start typing your C/C++ solution below

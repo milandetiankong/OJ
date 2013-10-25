@@ -3,7 +3,7 @@ public:
     int threeSumClosest(vector<int> &num, int target) {
         // Start typing your C/C++ solution below
         // DO NOT write int main() function
-        int min = ~(1<<31);
+        int min = INT_MAX;
         int sum, as, cur;
         int n = num.size();
         
@@ -28,3 +28,35 @@ public:
         return as;
     }
 };
+
+
+class Solution {
+public:
+    int threeSumClosest(vector<int> &num, int target) {
+        // Start typing your C/C++ solution below
+        // DO NOT write int main() function
+        int gap = INT_MAX;
+        int sum, tmp, ret;
+        int n = num.size();
+
+        if (n < 3) return 0;
+        sort(num.begin(), num.end());
+        
+        for (int i=0; i<n-2; ++i) {
+            sum = target - num[i];
+            int l = i+1, r = n-1;
+            while(l < r) {
+                tmp = num[l] + num[r];
+                if (abs(sum-tmp) < gap) {
+                    ret = num[i] + tmp;
+                    gap = abs(sum-tmp);
+                }
+                if (tmp < sum) ++l;
+                else if (tmp > sum) --r;
+                else break;
+            }
+        }
+        return ret;
+    }
+};
+
